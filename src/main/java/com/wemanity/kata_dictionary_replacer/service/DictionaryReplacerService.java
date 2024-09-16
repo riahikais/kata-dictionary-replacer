@@ -10,6 +10,11 @@ public class DictionaryReplacerService {
         if (text == null || text.isEmpty() || dictionary == null || dictionary.isEmpty()) {
             return text;
         }
+
+        for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+            String key = "$" + entry.getKey() + "$";
+            text = text.replace(key, entry.getValue());
+        }
         return text;
     }
 }
