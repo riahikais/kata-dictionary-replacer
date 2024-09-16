@@ -40,4 +40,42 @@ public class DictionaryReplacerServiceTest {
         String result = replacerService.replaceWords("$temp$ here comes the name $name$", dictionary);
         assertEquals("temporary here comes the name John Doe", result);
     }
+
+    @Test
+    public void testNoPlaceholders() {
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("temp", "temporary");
+
+        String result = replacerService.replaceWords("No placeholders here", dictionary);
+        assertEquals("No placeholders here", result);
+    }
+
+    @Test
+    public void testDictionaryWithoutDollarSigns() {
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("temp", "temporary");
+
+        String result = replacerService.replaceWords("This is $temp$", dictionary);
+        assertEquals("This is temporary", result);
+    }
+
+    @Test
+    public void testUndefinedPlaceholder() {
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("name", "John Doe");
+
+        String result = replacerService.replaceWords("Hello $temp$, meet $name$", dictionary);
+        assertEquals("Hello $temp$, meet John Doe", result);
+    }
+
+    @Test
+    public void testAdjacentPlaceholders() {
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("one", "1");
+        dictionary.put("two", "2");
+
+        String result = replacerService.replaceWords("$one$$two$", dictionary);
+        assertEquals("12", result);
+    }
+
 }
