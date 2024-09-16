@@ -30,4 +30,14 @@ public class DictionaryReplacerServiceTest {
         String result = replacerService.replaceWords("$temp$", dictionary);
         assertEquals("temporary", result);
     }
+
+    @Test
+    public void testMultiplePlaceholderReplacement() {
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("temp", "temporary");
+        dictionary.put("name", "John Doe");
+
+        String result = replacerService.replaceWords("$temp$ here comes the name $name$", dictionary);
+        assertEquals("temporary here comes the name John Doe", result);
+    }
 }
