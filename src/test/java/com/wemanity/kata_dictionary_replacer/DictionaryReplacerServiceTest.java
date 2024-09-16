@@ -15,6 +15,7 @@ public class DictionaryReplacerServiceTest {
     @Autowired
     private DictionaryReplacerService replacerService;
 
+    // Test pour le cas où la chaîne d'entrée et le dictionnaire sont vides.
     @Test
     public void testEmptyStringAndDictionary() {
         Map<String, String> dictionary = new HashMap<>();
@@ -22,6 +23,7 @@ public class DictionaryReplacerServiceTest {
         assertEquals("", result);
     }
 
+    // Test pour le cas où un seul mot clé est remplacé.
     @Test
     public void testSinglePlaceholderReplacement() {
         Map<String, String> dictionary = new HashMap<>();
@@ -31,6 +33,7 @@ public class DictionaryReplacerServiceTest {
         assertEquals("temporary", result);
     }
 
+    // Test pour le cas où plusieurs mots clés sont remplacés.
     @Test
     public void testMultiplePlaceholderReplacement() {
         Map<String, String> dictionary = new HashMap<>();
@@ -41,6 +44,7 @@ public class DictionaryReplacerServiceTest {
         assertEquals("temporary here comes the name John Doe", result);
     }
 
+    // Test avec une chaîne sans aucun mot-clé
     @Test
     public void testNoPlaceholders() {
         Map<String, String> dictionary = new HashMap<>();
@@ -50,6 +54,7 @@ public class DictionaryReplacerServiceTest {
         assertEquals("No placeholders here", result);
     }
 
+    // Test avec des mots-clés dans le dictionnaire non entourés de $
     @Test
     public void testDictionaryWithoutDollarSigns() {
         Map<String, String> dictionary = new HashMap<>();
@@ -59,6 +64,7 @@ public class DictionaryReplacerServiceTest {
         assertEquals("This is temporary", result);
     }
 
+    // Test avec une chaîne contenant des mots-clés non définis dans le dictionnaire
     @Test
     public void testUndefinedPlaceholder() {
         Map<String, String> dictionary = new HashMap<>();
@@ -68,6 +74,7 @@ public class DictionaryReplacerServiceTest {
         assertEquals("Hello $temp$, meet John Doe", result);
     }
 
+    // Test avec des mots-clés adjacents
     @Test
     public void testAdjacentPlaceholders() {
         Map<String, String> dictionary = new HashMap<>();
