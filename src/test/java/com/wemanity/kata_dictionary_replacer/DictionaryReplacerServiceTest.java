@@ -1,5 +1,6 @@
 package com.wemanity.kata_dictionary_replacer;
 
+import com.wemanity.kata_dictionary_replacer.service.DictionaryReplacerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,17 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DictionaryReplacerServiceTest {
-    @SpringBootTest
-    public class DictionaryReplacerServiceTest {
-        @Autowired
-        private DictionaryReplacerService replacerService;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-        @Test
-        public void testEmptyStringAndDictionary() {
-            Map<String, String> dictionary = new HashMap<>();
-            String result = replacerService.replaceWords("", dictionary);
-            assertEquals("", result);
-        }
+@SpringBootTest
+public class DictionaryReplacerServiceTest {
+    @Autowired
+    private DictionaryReplacerService replacerService;
+
+    @Test
+    public void testEmptyStringAndDictionary() {
+        Map<String, String> dictionary = new HashMap<>();
+        String result = replacerService.replaceWords("", dictionary);
+        assertEquals("", result);
     }
 }
