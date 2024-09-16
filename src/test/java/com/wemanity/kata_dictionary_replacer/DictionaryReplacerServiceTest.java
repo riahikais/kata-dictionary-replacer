@@ -21,4 +21,13 @@ public class DictionaryReplacerServiceTest {
         String result = replacerService.replaceWords("", dictionary);
         assertEquals("", result);
     }
+
+    @Test
+    public void testSinglePlaceholderReplacement() {
+        Map<String, String> dictionary = new HashMap<>();
+        dictionary.put("temp", "temporary");
+
+        String result = replacerService.replaceWords("$temp$", dictionary);
+        assertEquals("temporary", result);
+    }
 }
